@@ -10,7 +10,13 @@ module.exports = {
     },
     darkMode: 'class', // or 'media' or 'class'
     theme: {
-      extend: {},
+      extend: {
+        colors: {
+          'light-gray': '#f8fafe',
+          'medium-gray': '#aaaaaa',
+          'bold-yellow': '#ffbb20',
+        }
+      },
     },
     variants: {
       extend: {},
