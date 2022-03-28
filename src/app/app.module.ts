@@ -8,6 +8,7 @@ import { AppRouterModule } from './router/app-router.module';
 // Components
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundComponent } from './shared/pages/not-found/not-found.component'
     BrowserModule,
     AuthModule,
     HomeModule,
-    AppRouterModule
+    AppRouterModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
