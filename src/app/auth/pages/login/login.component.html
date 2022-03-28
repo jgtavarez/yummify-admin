@@ -4,14 +4,22 @@
         <p class="text-medium-gray text-2xl max-w-md mx-auto">Administration and management of online food delivery
             mobile application.</p>
     </div>
-    <form autocomplete="off">
-        <div class="bg-light-gray border flex justify-between items-center rounded-lg py-4 px-6 mb-5 md:py-5 md:mb-7">
-            <input type="text" class="bg-transparent text-2xl w-full mr-6" placeholder="Email" />
-            <fa-icon [icon]="faEnvelope"></fa-icon>
+    <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-5 md:mb-7">
+            <div class="bg-light-gray border flex justify-between items-center rounded-lg py-4 px-6  md:py-5">
+                <input type="text" class="bg-transparent text-2xl w-full mr-6" placeholder="Email" id="email"
+                    name="email" formControlName="email" />
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+            </div>
+            <span class="text-red-400 text-2xl" *ngIf="invalidField('email')">{{emailErrorMsg}}</span>
         </div>
-        <div class="bg-light-gray border flex justify-between items-center rounded-lg py-4 px-6 md:py-5">
-            <input type="password" class="bg-transparent text-2xl w-full mr-6" placeholder="Password" />
-            <fa-icon [icon]="faLock"></fa-icon>
+        <div>
+            <div class="bg-light-gray border flex justify-between items-center rounded-lg py-4 px-6 md:py-5">
+                <input type="password" class="bg-transparent text-2xl w-full mr-6" placeholder="Password" id="password"
+                    name="password" formControlName="password" />
+                <fa-icon [icon]="faLock"></fa-icon>
+            </div>
+            <span class="text-red-400 text-2xl" *ngIf="invalidField('password')">{{passwordErrorMsg}}</span>
         </div>
         <button
             class="bg-bold-yellow text-white mt-10 py-5 font-bold rounded-lg w-full md:py-6 md:text-3xl md:mt-14">Login</button>
