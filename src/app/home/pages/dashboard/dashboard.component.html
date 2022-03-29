@@ -1,1 +1,71 @@
-<p>dashboard works!</p>
+<div class="container mx-auto p-6">
+    <div class="flex flex-wrap gap-4">
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" name="Total Orders" amount="40.257">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" name="Total Orders" amount="40.257">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" name="Total Orders" amount="40.257">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" name="Total Orders" amount="40.257">
+        </app-stats-card>
+    </div>
+    <div class="bg-white border rounded-lg mt-10">
+        <div class="p-6 border-b">
+            <h3 class="text-3xl font-bold">Recent Orders</h3>
+        </div>
+        <table class="w-full table-auto">
+            <thead class="bg-medium-white">
+                <tr class="border-b border-line-gray text-left">
+                    <th class="p-6">ID</th>
+                    <th class="p-6">Date</th>
+                    <th class="p-6">Customer</th>
+                    <th class="p-6">Status</th>
+                    <th class="p-6">Total</th>
+                    <th class="p-6">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Alfreds Futterkiste</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Maria Anders</td>
+                    <td class="whitespace-nowrap font-normal text-2xl px-6 py-3 overflow-x-hidden overflow-ellipsis">Germany</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

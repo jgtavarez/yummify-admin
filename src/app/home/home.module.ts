@@ -4,22 +4,28 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Components
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { StatsCardComponent } from './components/stats-card/stats-card.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    SidebarComponent,
+    StatsCardComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ]
 })
 export class HomeModule { }
