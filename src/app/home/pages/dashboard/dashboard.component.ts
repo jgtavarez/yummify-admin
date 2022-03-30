@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faReceipt } from '@fortawesome/free-solid-svg-icons'
+import { faReceipt, faCoins, faUser } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +9,8 @@ import { faReceipt } from '@fortawesome/free-solid-svg-icons'
 })
 export class DashboardComponent implements OnInit {
   faReceipt = faReceipt;
+  faDollarSign = faCoins;
+  faUser = faUser;
 
   constructor() { }
 

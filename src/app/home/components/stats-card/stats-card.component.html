@@ -1,5 +1,7 @@
 <div class="bg-white border rounded-lg p-5">
-    <fa-icon [icon]="icon"></fa-icon>
-    <h3 class="text-3xl font-bold mt-5">{{name}}</h3>
+    <div class="rounded-full flex justify-center items-center w-14 h-14" [class]="'bg-'+color+'-200'">
+        <fa-icon class="text-2xl" [class]="'text-'+color+'-600'" [icon]="icon"></fa-icon>
+    </div>
+    <h3 class="text-3xl font-bold mt-7">{{name}}</h3>
     <p class="text-medium-gray text-2xl">{{amount}}</p>
 </div>

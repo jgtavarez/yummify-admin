@@ -9,6 +9,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 })
 export class StatsCardComponent implements OnInit {
   @Input() icon!: IconDefinition;
+  @Input() color: string = '';
   @Input() name: string = '';
   @Input() amount: string = '';
 
