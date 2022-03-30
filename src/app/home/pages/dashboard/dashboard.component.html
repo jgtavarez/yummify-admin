@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div class="container mx-auto p-6">
+    <div class="flex flex-wrap gap-4">
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" color="blue" name="Total Orders"
+            amount="40.257">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faDollarSign" color="yellow" name="Total Earnings"
+            amount="$64.842">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faUser" color="purple" name="Customers" amount="389">
+        </app-stats-card>
+        <app-stats-card class="w-full" style="flex: 45%;" [icon]="faReceipt" color="pink" name="Employees" amount="147">
+        </app-stats-card>
+    </div>
+
+    <app-column-chart></app-column-chart>
+
+    <div class="bg-white border rounded-lg mt-12">
+        <div class="p-6 border-b">
+            <h3 class="text-2xl font-bold">Recent Orders</h3>
+        </div>
+        <table class="w-full table-auto">
+            <thead class="bg-medium-white">
+                <tr class="border-b border-line-gray text-left text-xl">
+                    <th class="p-6">ID</th>
+                    <th class="p-6 hidden md:table-cell">Date</th>
+                    <th class="p-6 hidden md:table-cell">Customer</th>
+                    <th class="p-6 hidden md:table-cell">Payment</th>
+                    <th class="p-6">Status</th>
+                    <th class="p-6">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        #17948</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        29/03/2022</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        Michael Anthony Wright</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        PayPal</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        Pending</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        $27.8</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        #17949</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        13/03/2022</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        Guy O'Brien</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        Credit card</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        On the way</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        $13.9</td>
+                </tr>
+                <tr class="border-b border-line-gray">
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        #17950</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        05/02/2022</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        Henry Lee Jackson</td>
+                    <td
+                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
+                        Cash</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        Completed</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        $32.4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
