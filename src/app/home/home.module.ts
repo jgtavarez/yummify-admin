@@ -13,6 +13,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
 import { ColumnChartComponent } from './components/column-chart/column-chart.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ColumnChartComponent } from './components/column-chart/column-chart.com
     DashboardComponent,
     SidebarComponent,
     StatsCardComponent,
-    ColumnChartComponent
+    ColumnChartComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
