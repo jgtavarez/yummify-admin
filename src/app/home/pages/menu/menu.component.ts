@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash, faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import * as home from '../../store/home.actions';
 import { AppStateWithHomeReducer } from '../../store/home.reducers';
 import { Subscription } from 'rxjs';
-import { Menu } from '../../interfaces/index';
+import { MenuResp, Pagination } from '../../interfaces/index';
 
 @Component({
   selector: 'app-menu',
@@ -14,23 +14,40 @@ import { Menu } from '../../interfaces/index';
 })
 export class MenuComponent implements OnInit {
 
-  menu: Menu[] = [];
+  resp!: MenuResp;
   loading: boolean = false;
   faPen = faPen;
   faTrash = faTrash;
+  faAngleLeft = faAngleLeft;
+  faAngleRight = faAngleRight;
+  faAngleDoubleLeft = faAngleDoubleLeft;
+  faAngleDoubleRight = faAngleDoubleRight;
+
+  pagination: Pagination = {
+    limit: 10,
+    offset: 0
+  }
 
   private _subscription!: Subscription;
-  constructor(private store: Store<AppStateWithHomeReducer>) {
+  constructor(private store: Store<AppStateWithHomeReducer>) { }
+
+  ngOnInit(): void {
     this.store.select('home').subscribe(({ menuPage }) => {
-      this.menu = menuPage.menu;
+      this.resp = menuPage.resp;
       this.loading = menuPage.loading;
     });
 
-    this.store.dispatch(home.getMenu());
+    this.store.dispatch(home.getMenu({ pagination: this.pagination }));
   }
 
-  ngOnInit(): void {
+  changePagination(newOffset: number) {
+    console.log(newOffset)
+    this.pagination = {
+      ...this.pagination,
+      offset: newOffset
+    }
 
+    this.ngOnInit()
   }
 
 }

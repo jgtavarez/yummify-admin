@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b border-line-gray" *ngFor="let item of menu">
+                <tr class="border-b border-line-gray" *ngFor="let item of resp.menu">
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
                         {{item.name}}</td>
                     <td
@@ -45,5 +45,23 @@
                 </tr>
             </tbody>
         </table>
+        <div class="p-6 border-b flex justify-between items-center">
+            <div>
+            </div>
+            <div class="flex gap-6">
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}" (click)="changePagination(0)">
+                    <fa-icon class="text-4xl" [icon]="faAngleDoubleLeft"></fa-icon>
+                </button>
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}" (click)="changePagination(resp.previous)">
+                    <fa-icon class="text-4xl" [icon]="faAngleLeft"></fa-icon>
+                </button>
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}" (click)="changePagination(resp.next)">
+                    <fa-icon class="text-4xl" [icon]="faAngleRight"></fa-icon>
+                </button>
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}" (click)="changePagination(resp.count-pagination.limit)">
+                    <fa-icon class="text-4xl" [icon]="faAngleDoubleRight"></fa-icon>
+                </button>
+            </div>
+        </div>
     </div>
 </div>

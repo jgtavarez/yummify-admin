@@ -12,7 +12,7 @@ export interface AppStateWithHomeReducer extends AppState {
 
 export const homeInitialState: HomeState = {
     menuPage: {
-        menu: [],
+        resp: {},
         loading: false,
         error: ''
     }
@@ -28,11 +28,11 @@ const _homeReducer = createReducer(homeInitialState,
         }
     })),
 
-    on(actions.getMenuSuccess, (state, { menu }) => ({
+    on(actions.getMenuSuccess, (state, { resp }) => ({
         ...state,
         menuPage: {
             ...state.menuPage,
-            menu: [...menu],
+            resp,
             loading: false,
         }
     })),
