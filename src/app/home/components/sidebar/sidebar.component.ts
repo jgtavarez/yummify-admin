@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faPizzaSlice, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { Sidebar } from '../../interfaces';
+import { AppState } from '../../../app.reducer';
+import { Admin } from '../../../shared/models/admin.model';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +15,26 @@ import { Sidebar } from '../../interfaces';
 })
 export class SidebarComponent implements OnInit {
 
+  admin!: Admin;
+  faPowerOff = faPowerOff;
+
   sidebar: Sidebar[] = [
     { icon: faChartPie, text: 'Dashboard', url: '/dashboard' },
-    { icon: faChartPie, text: 'Menu', url: '/menu' },
+    { icon: faPizzaSlice, text: 'Menu', url: '/menu' },
   ];
 
-  constructor() { }
+  private _subscription!: Subscription;
+  constructor(private store: Store<AppState>, private authService: AuthService) {
+    this.store.select('auth').subscribe(({ admin }) => {
+      this.admin = admin;
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }
