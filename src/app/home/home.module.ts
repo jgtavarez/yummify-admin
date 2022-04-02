@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { SharedModule } from '../shared/shared.module';
 
 // Components
 import { HomeComponent } from './home.component';
@@ -29,6 +30,7 @@ import { MenuComponent } from './pages/menu/menu.component';
     RouterModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     NgApexchartsModule

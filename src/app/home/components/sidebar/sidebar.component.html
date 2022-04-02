@@ -1,18 +1,22 @@
-<div class="bg-white fixed z-50 w-screen h-screen p-6 -left-full xl:static xl:w-full xl:h-screen">
+<div class="bg-white fixed z-50 w-screen h-screen flex flex-col justify-between p-6 -left-full xl:static xl:w-full xl:h-screen">
     <div class="flex items-center">
         <div
             class="bg-bold-yellow text-white rounded-full flex justify-center items-center mr-6 w-24 h-24 text-4xl font-bold">
-            F</div>
+            {{admin.name | initialLetter}}</div>
         <div>
-            <h4 class="font-bold">Florangel Martínez</h4>
-            <h3 class="text-medium-gray text-2xl">Administrator</h3>
+            <h4 class="font-bold">{{admin.name | titlecase}}</h4>
+            <h3 class="text-medium-gray text-2xl">{{admin.role | titlecase}}</h3>
         </div>
     </div>
-    <ul class="mt-20 flex flex-col gap-4">
+    <ul class="mt-20 h-full flex flex-col gap-4">
         <a *ngFor="let list of sidebar" class="flex items-center p-4 rounded-lg" [routerLink]="list.url"
             routerLinkActive="bg-bold-yellow text-white">
             <fa-icon class="mr-6" [icon]="list.icon"></fa-icon>
             <p class="text-2xl font-bold">{{list.text}}</p>
         </a>
     </ul>
+    <button class="bg-gray-200 w-full flex items-center p-5 rounded-lg" style="margin-top: 100%;" (click)="logout()">
+        <fa-icon class="mr-6" [icon]="faPowerOff"></fa-icon>
+        <p class="text-2xl font-bold">Logout</p>
+    </button>
 </div>
