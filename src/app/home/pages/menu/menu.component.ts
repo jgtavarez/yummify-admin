@@ -5,6 +5,8 @@ import * as home from '../../store/home.actions';
 import { AppStateWithHomeReducer } from '../../store/home.reducers';
 import { Subscription } from 'rxjs';
 import { MenuResp, Pagination } from '../../interfaces/index';
+import { MenuService } from '../../services/menu.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -29,7 +31,7 @@ export class MenuComponent implements OnInit {
   }
 
   private _subscription!: Subscription;
-  constructor(private store: Store<AppStateWithHomeReducer>) { }
+  constructor(private store: Store<AppStateWithHomeReducer>, private menuService: MenuService) { }
 
   ngOnInit(): void {
     this.store.select('home').subscribe(({ menuPage }) => {
@@ -48,6 +50,30 @@ export class MenuComponent implements OnInit {
     }
 
     this.ngOnInit()
+  }
+
+  deleteFood(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `This food will be deleted. You can't undo this action.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ffbb20',
+      cancelButtonColor: '#ef2626',
+      confirmButtonText: 'Accept',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.menuService.deleteFood(id)
+          .subscribe(resp => {
+            Swal.fire({ title: 'Deleted', text: 'Food deleted successfully.', icon: 'success', confirmButtonColor: '#ffbb20' })
+          }, (err) => {
+            Swal.fire({ title: 'Error', text: 'Error deleting food.', icon: 'error', confirmButtonColor: '#ffbb20' })
+          }).add(() => {
+          })
+      }
+    });
   }
 
 }

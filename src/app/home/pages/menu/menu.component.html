@@ -1,4 +1,8 @@
 <div class="container mx-auto p-6">
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-bold">Menu</h2>
+        <button class="bg-bold-yellow text-white p-5 font-bold rounded-lg" routerLink="./create">Add Food</button>
+    </div>
     <div class="bg-white border rounded-lg mt-12">
         <div class="p-6 border-b">
             <h3 class="text-2xl font-bold">Menu</h3>
@@ -34,8 +38,8 @@
                         class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis  hidden md:table-cell">
                         {{item.type | titlecase}}</td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
-                        <fa-icon class="mr-4 cursor-pointer" [icon]="faPen"></fa-icon>
-                        <fa-icon class="cursor-pointer" [icon]="faTrash"></fa-icon>
+                        <fa-icon class="mr-4 cursor-pointer" [icon]="faPen" [routerLink]="'./'+item.id"></fa-icon>
+                        <fa-icon class="cursor-pointer" [icon]="faTrash" (click)="deleteFood(item.id)"></fa-icon>
                     </td>
                 </tr>
                 <tr class="border-b border-line-gray" *ngIf="loading">
@@ -49,16 +53,20 @@
             <div>
             </div>
             <div class="flex gap-6">
-                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}" (click)="changePagination(0)">
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}"
+                    (click)="changePagination(0)">
                     <fa-icon class="text-4xl" [icon]="faAngleDoubleLeft"></fa-icon>
                 </button>
-                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}" (click)="changePagination(resp.previous)">
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}"
+                    (click)="changePagination(resp.previous)">
                     <fa-icon class="text-4xl" [icon]="faAngleLeft"></fa-icon>
                 </button>
-                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}" (click)="changePagination(resp.next)">
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}"
+                    (click)="changePagination(resp.next)">
                     <fa-icon class="text-4xl" [icon]="faAngleRight"></fa-icon>
                 </button>
-                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}" (click)="changePagination(resp.count-pagination.limit)">
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}"
+                    (click)="changePagination(resp.count-pagination.limit)">
                     <fa-icon class="text-4xl" [icon]="faAngleDoubleRight"></fa-icon>
                 </button>
             </div>

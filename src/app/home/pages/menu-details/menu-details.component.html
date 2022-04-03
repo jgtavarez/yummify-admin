@@ -1,0 +1,42 @@
+<div class="container mx-auto p-6">
+    <h3 class="text-3xl font-bold">{{id=='create' ? 'Create food' : 'Update food'}}</h3>
+    <form class="bg-white border rounded-lg mt-12 p-6" autocomplete="off" [formGroup]="menuForm" (ngSubmit)="submit()">
+        <div class="flex gap-6 mb-6">
+            <div class="flex flex-col w-full">
+                <label for="name">Name</label>
+                <input type="text" class="border rounded-lg py-4 px-6 text-2xl w-full" id="name" name="name" formControlName="name" />
+                <span class="text-red-400 text-2xl" *ngIf="invalidField('name')">{{nameErrorMsg}}</span>
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="description">Description</label>
+                <input type="text" class="border rounded-lg py-4 px-6 text-2xl w-full" id="description" name="description" formControlName="description" />
+                <span class="text-red-400 text-2xl" *ngIf="invalidField('description')">{{descriptionErrorMsg}}</span>
+            </div>
+        </div>
+        <div class="flex gap-6 mb-6">
+            <div class="flex flex-col w-full">
+                <label for="price">Price</label>
+                <input type="number" min="1" class="border rounded-lg py-4 px-6 text-2xl w-full" id="price" name="price" formControlName="price" />
+                <span class="text-red-400 text-2xl" *ngIf="invalidField('price')">{{priceErrorMsg}}</span>
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="calories">Calories</label>
+                <input type="number" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" class="border rounded-lg py-4 px-6 text-2xl w-full" id="calories" name="calories" formControlName="calories" />
+                <span class="text-red-400 text-2xl" *ngIf="invalidField('calories')">{{caloriesErrorMsg}}</span>
+            </div>
+        </div>
+        <div class="flex flex-col mb-6">
+            <label for="type">Type</label>
+            <select class="border rounded-lg py-4 px-6 text-2xl w-full" id="type" name="type" formControlName="type">
+                <option value="pizza">Pizza</option>
+                <option value="burger">Burger</option>
+                <option value="extra">Extra</option>
+            </select>
+            <span class="text-red-400 text-2xl" *ngIf="invalidField('type')">{{typeErrorMsg}}</span>
+        </div>
+        <div class="flex justify-end gap-6">
+            <button class="bg-green-500 text-white p-5 font-bold rounded-lg" type="submit">{{id=='create' ? 'Create' : 'Update'}}</button>
+            <button class="bg-red-500 text-white p-5 font-bold rounded-lg" routerLink="/menu" type="button">Cancel</button>
+        </div>
+    </form>
+</div>
