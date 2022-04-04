@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Menu, MenuResp, Pagination } from '../interfaces';
+import { Menu, MenuResp, Pagination, MenuFilters } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ export class MenuService {
     return localStorage.getItem('Authorization') || '';
   }
 
-  getMenu(pagination: Pagination) {
+  getMenu(pagination: Pagination, filters: MenuFilters) {
     const headers = new HttpHeaders({
       Authorization: this.token
     });
 
-    return this.http.get<MenuResp>(`${environment.API_BASE}/api/menu?limit=${pagination.limit}&offset=${pagination.offset}`, { headers });
+    return this.http.get<MenuResp>(`${environment.API_BASE}/api/menu?limit=${pagination.limit}&offset=${pagination.offset}&name=${filters.name}&description=${filters.description}&type=${filters.type}`, { headers });
   }
 
   getFoodById(id: number) {

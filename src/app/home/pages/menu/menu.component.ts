@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { faPen, faTrash, faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import * as home from '../../store/home.actions';
@@ -7,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { MenuResp, Pagination } from '../../interfaces/index';
 import { MenuService } from '../../services/menu.service';
 import Swal from 'sweetalert2';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -30,8 +32,20 @@ export class MenuComponent implements OnInit {
     offset: 0
   }
 
+  public filters = this.fb.group({
+    name: ['', [Validators.required, Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.maxLength(100)]],
+    type: ['', Validators.required],
+  });
+
   private _subscription!: Subscription;
-  constructor(private store: Store<AppStateWithHomeReducer>, private menuService: MenuService) { }
+  constructor(private store: Store<AppStateWithHomeReducer>, private menuService: MenuService, private fb: FormBuilder) {
+    this.filters.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(filters => this.ngOnInit())
+    ).subscribe();
+  }
 
   ngOnInit(): void {
     this.store.select('home').subscribe(({ menuPage }) => {
@@ -39,11 +53,10 @@ export class MenuComponent implements OnInit {
       this.loading = menuPage.loading;
     });
 
-    this.store.dispatch(home.getMenu({ pagination: this.pagination }));
+    this.store.dispatch(home.getMenu({ pagination: this.pagination, filters: this.filters.value }));
   }
 
   changePagination(newOffset: number) {
-    console.log(newOffset)
     this.pagination = {
       ...this.pagination,
       offset: newOffset

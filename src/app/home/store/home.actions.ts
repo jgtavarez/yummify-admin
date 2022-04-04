@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { MenuResp, Pagination } from '../interfaces';
+import { MenuFilters, MenuResp, Pagination } from '../interfaces';
 
 export const getMenu = createAction(
   '[home] getMenu',
-  props<{ pagination: Pagination }>()
+  props<{ pagination: Pagination, filters: MenuFilters }>()
 );
 
 export const getMenuSuccess = createAction(

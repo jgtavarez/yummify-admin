@@ -14,7 +14,7 @@ export class homeEffects {
     () => this.actions.pipe(
       ofType(HomeActions.getMenu),
       mergeMap(
-        (action) => this.menuService.getMenu(action.pagination)
+        (action) => this.menuService.getMenu(action.pagination, action.filters)
           .pipe(
             map(resp => HomeActions.getMenuSuccess({ resp: resp })),
             catchError(err => of(HomeActions.getMenuFailure()))

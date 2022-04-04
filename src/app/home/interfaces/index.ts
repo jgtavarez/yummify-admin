@@ -33,3 +33,9 @@ export interface Pagination {
     limit: number;
     offset: number;
 }
+
+export interface MenuFilters {
+    name: string;
+    description: string;
+    type: Type;
+}
