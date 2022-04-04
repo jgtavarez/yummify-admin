@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
 import { ColumnChartComponent } from './components/column-chart/column-chart.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { MenuDetailsComponent } from './pages/menu-details/menu-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MenuComponent } from './pages/menu/menu.component';
     SidebarComponent,
     StatsCardComponent,
     ColumnChartComponent,
-    MenuComponent
+    MenuComponent,
+    MenuDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as HomeActions from './home.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MenuService } from '../pages/menu/services/menu.service';
+import { MenuService } from '../services/menu.service';
 
 @Injectable()
 export class homeEffects {
@@ -14,9 +14,9 @@ export class homeEffects {
     () => this.actions.pipe(
       ofType(HomeActions.getMenu),
       mergeMap(
-        (action) => this.menuService.getMenu()
+        (action) => this.menuService.getMenu(action.pagination, action.filters)
           .pipe(
-            map(resp => HomeActions.getMenuSuccess({ menu: resp })),
+            map(resp => HomeActions.getMenuSuccess({ resp: resp })),
             catchError(err => of(HomeActions.getMenuFailure()))
           )
       )

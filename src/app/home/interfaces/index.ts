@@ -6,11 +6,36 @@ export interface Sidebar {
     url: string;
 }
 
+export interface MenuResp {
+    count: number;
+    next: number;
+    previous: number;
+    menu: Menu[];
+}
+
 export interface Menu {
-    name:        string;
+    id: number;
+    name: string;
     description: string;
-    price:       number;
-    calories:    number;
-    image:       string;
-    type:        string;
+    price: number;
+    calories: number;
+    image: string;
+    type: Type;
+}
+
+export enum Type {
+    Burger = "burger",
+    Pizza = "pizza",
+    Extra = "extra",
+}
+
+export interface Pagination {
+    limit: number;
+    offset: number;
+}
+
+export interface MenuFilters {
+    name: string;
+    description: string;
+    type: Type;
 }

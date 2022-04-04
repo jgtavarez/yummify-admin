@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       .subscribe(resp => {
         this.router.navigateByUrl('/');
       }, (err) => {
-        console.log(err)
         Swal.fire({ title: 'Error', text: err.error.msg || 'An error ocurred. Please try again later.', icon: 'error', confirmButtonColor: '#ffbb20' })
       }).add(() => {
       })
