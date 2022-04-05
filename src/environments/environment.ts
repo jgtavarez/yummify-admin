@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_BASE: 'https://yummify-backend.herokuapp.com'
+  API_BASE: 'http://localhost:8080'
 };
 
 /*

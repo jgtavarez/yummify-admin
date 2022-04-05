@@ -1,0 +1,84 @@
+<div class="container mx-auto p-6">
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-bold">Administrators</h2>
+        <button class="bg-bold-yellow text-white p-5 font-bold rounded-lg" routerLink="./create">Add Admin</button>
+    </div>
+    <div class="bg-white border rounded-lg mt-12">
+        <form class="p-6 border-b flex flex-row gap-5" autocomplete="off" [formGroup]="filters">
+            <div class="flex flex-col w-full">
+                <label for="name" class="text-xl font-bold">Name</label>
+                <input type="text" class="border rounded-lg py-2 px-3 text-2xl w-full" id="name" name="name"
+                    formControlName="name" />
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="email" class="text-xl font-bold">Email</label>
+                <input type="text" class="border rounded-lg py-2 px-3 text-2xl w-full" id="email" name="email"
+                    formControlName="email" />
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="role" class="text-xl font-bold">Role</label>
+                <select class="border rounded-lg py-2 px-3 text-2xl w-full" id="role" name="role"
+                    formControlName="role">
+                    <option value="">All</option>
+                    <option value="administrator">Administrator</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="reader">Reader</option>
+                </select>
+            </div>
+        </form>
+        <table class="w-full table-auto">
+            <thead class="bg-medium-white">
+                <tr class="border-b border-line-gray text-left text-xl">
+                    <th class="p-6">Name</th>
+                    <th class="p-6">Email</th>
+                    <th class="p-6">Role</th>
+                    <th class="p-6">Status</th>
+                    <th class="p-6">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-line-gray" *ngFor="let item of resp.administrators">
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        {{item.name}}</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        {{item.email}}</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        {{item.role | titlecase}}</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        {{item.status}}</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        <fa-icon class="mr-4 cursor-pointer" [icon]="faPen" [routerLink]="'./'+item.id"></fa-icon>
+                        <fa-icon class="cursor-pointer" [icon]="faTrash" (click)="deleteAdmin(item.id)"></fa-icon>
+                    </td>
+                </tr>
+                <tr class="border-b border-line-gray" *ngIf="loading">
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        Cargando datos...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="p-6 border-b flex justify-between items-center">
+            <div>
+            </div>
+            <div class="flex gap-6">
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}"
+                    (click)="changePagination(0)">
+                    <fa-icon class="text-4xl" [icon]="faAngleDoubleLeft"></fa-icon>
+                </button>
+                <button [disabled]="resp.previous==null" [ngClass]="{'text-gray-300 cursor-auto': resp.previous==null}"
+                    (click)="changePagination(resp.previous)">
+                    <fa-icon class="text-4xl" [icon]="faAngleLeft"></fa-icon>
+                </button>
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}"
+                    (click)="changePagination(resp.next)">
+                    <fa-icon class="text-4xl" [icon]="faAngleRight"></fa-icon>
+                </button>
+                <button [disabled]="resp.next==null" [ngClass]="{'text-gray-300 cursor-auto': resp.next==null}"
+                    (click)="changePagination(resp.count-pagination.limit)">
+                    <fa-icon class="text-4xl" [icon]="faAngleDoubleRight"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

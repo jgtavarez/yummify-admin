@@ -16,6 +16,8 @@ import { StatsCardComponent } from './components/stats-card/stats-card.component
 import { ColumnChartComponent } from './components/column-chart/column-chart.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { MenuDetailsComponent } from './pages/menu-details/menu-details.component';
+import { AdministratorsComponent } from './pages/administrators/administrators.component';
+import { AdministratorsDetailsComponent } from './pages/administrators-details/administrators-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MenuDetailsComponent } from './pages/menu-details/menu-details.componen
     StatsCardComponent,
     ColumnChartComponent,
     MenuComponent,
-    MenuDetailsComponent
+    MenuDetailsComponent,
+    AdministratorsComponent,
+    AdministratorsDetailsComponent
   ],
   imports: [
     CommonModule,
