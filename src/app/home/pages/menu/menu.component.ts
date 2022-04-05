@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { MenuResp, Pagination } from '../../interfaces/index';
 import { MenuService } from '../../services/menu.service';
 import Swal from 'sweetalert2';
-import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -81,6 +81,9 @@ export class MenuComponent implements OnInit {
         this.menuService.deleteFood(id)
           .subscribe(resp => {
             Swal.fire({ title: 'Deleted', text: 'Food deleted successfully.', icon: 'success', confirmButtonColor: '#ffbb20' })
+              .then(function () {
+                location.reload();
+              });
           }, (err) => {
             Swal.fire({ title: 'Error', text: 'Error deleting food.', icon: 'error', confirmButtonColor: '#ffbb20' })
           }).add(() => {

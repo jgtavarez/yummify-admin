@@ -1,7 +1,7 @@
 <div class="container mx-auto p-6">
     <div class="flex justify-between items-center">
-        <h2 class="text-3xl font-bold">Menu</h2>
-        <button class="bg-bold-yellow text-white p-5 font-bold rounded-lg" routerLink="./create">Add Food</button>
+        <h2 class="text-3xl font-bold">Administrators</h2>
+        <button class="bg-bold-yellow text-white p-5 font-bold rounded-lg" routerLink="./create">Add Admin</button>
     </div>
     <div class="bg-white border rounded-lg mt-12">
         <form class="p-6 border-b flex flex-row gap-5" autocomplete="off" [formGroup]="filters">
@@ -11,18 +11,18 @@
                     formControlName="name" />
             </div>
             <div class="flex flex-col w-full">
-                <label for="description" class="text-xl font-bold">Description</label>
-                <input type="text" class="border rounded-lg py-2 px-3 text-2xl w-full" id="description"
-                    name="description" formControlName="description" />
+                <label for="email" class="text-xl font-bold">Email</label>
+                <input type="text" class="border rounded-lg py-2 px-3 text-2xl w-full" id="email" name="email"
+                    formControlName="email" />
             </div>
             <div class="flex flex-col w-full">
-                <label for="type" class="text-xl font-bold">Type</label>
-                <select class="border rounded-lg py-2 px-3 text-2xl w-full" id="type" name="type"
-                    formControlName="type">
+                <label for="role" class="text-xl font-bold">Role</label>
+                <select class="border rounded-lg py-2 px-3 text-2xl w-full" id="role" name="role"
+                    formControlName="role">
                     <option value="">All</option>
-                    <option value="pizza">Pizza</option>
-                    <option value="burger">Burger</option>
-                    <option value="extra">Extra</option>
+                    <option value="administrator">Administrator</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="reader">Reader</option>
                 </select>
             </div>
         </form>
@@ -30,35 +30,27 @@
             <thead class="bg-medium-white">
                 <tr class="border-b border-line-gray text-left text-xl">
                     <th class="p-6">Name</th>
-                    <th class="p-6 hidden md:table-cell">Description</th>
-                    <th class="p-6">Price</th>
-                    <th class="p-6 hidden md:table-cell">Calories</th>
-                    <th class="p-6">Image</th>
-                    <th class="p-6 hidden md:table-cell">Type</th>
+                    <th class="p-6">Email</th>
+                    <th class="p-6">Role</th>
+                    <th class="p-6">Status</th>
                     <th class="p-6">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b border-line-gray" *ngFor="let item of resp.menu">
+                <tr class="border-b border-line-gray" *ngFor="let item of resp.administrators">
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
                         {{item.name}}</td>
-                    <td
-                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
-                        {{item.description}}</td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
-                        ${{item.price}}</td>
-                    <td
-                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis hidden md:table-cell">
-                        {{item.calories}}</td>
+                        {{item.email}}</td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
-                        <img class="w-11 h-11" [src]="item.image" alt="food" />
+                        {{item.role | titlecase}}</td>
+                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
+                        <app-checkbox [estado]="item.status" (click)="activateAdmin(item)">
+                        </app-checkbox>
                     </td>
-                    <td
-                        class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis  hidden md:table-cell">
-                        {{item.type | titlecase}}</td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
                         <fa-icon class="mr-4 cursor-pointer" [icon]="faPen" [routerLink]="'./'+item.id"></fa-icon>
-                        <fa-icon class="cursor-pointer" [icon]="faTrash" (click)="deleteFood(item.id)"></fa-icon>
+                        <fa-icon class="cursor-pointer" [icon]="faTrash" (click)="deleteAdmin(item.id)"></fa-icon>
                     </td>
                 </tr>
             </tbody>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChartPie, faPizzaSlice, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faPizzaSlice, faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Sidebar } from '../../interfaces';
@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
   sidebar: Sidebar[] = [
     { icon: faChartPie, text: 'Dashboard', url: '/dashboard' },
     { icon: faPizzaSlice, text: 'Menu', url: '/menu' },
+    { icon: faUser, text: 'Administrators', url: '/administrators' },
   ];
 
   private _subscription!: Subscription;
@@ -33,7 +34,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 

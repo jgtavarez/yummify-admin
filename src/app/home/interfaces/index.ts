@@ -20,13 +20,46 @@ export interface Menu {
     price: number;
     calories: number;
     image: string;
-    type: Type;
+    type: valid_type;
 }
 
-export enum Type {
+export enum valid_type {
     Burger = "burger",
     Pizza = "pizza",
     Extra = "extra",
+}
+
+export interface MenuFilters {
+    name: string;
+    description: string;
+    type: valid_type;
+}
+
+export interface AdministratorResp {
+    count: number;
+    next: number;
+    previous: number;
+    administrators: Admin[];
+}
+
+export interface Admin {
+    id: number;
+    name: string;
+    email: string;
+    status: boolean;
+    role: string;
+}
+
+export enum valid_roles {
+    Administrator = "administrator",
+    Publisher = "publisher",
+    Reader = "reader",
+}
+
+export interface AdministratorFilters {
+    name: string;
+    email: string;
+    role: valid_roles;
 }
 
 export interface Pagination {
@@ -34,8 +67,4 @@ export interface Pagination {
     offset: number;
 }
 
-export interface MenuFilters {
-    name: string;
-    description: string;
-    type: Type;
-}
+

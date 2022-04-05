@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MenuService } from '../../services/menu.service';
-import { Menu } from '../../interfaces/index';
 
 @Component({
   selector: 'app-menu-details',
@@ -43,7 +42,9 @@ export class MenuDetailsComponent implements OnInit {
         });
       }, (err) => {
         Swal.fire({ title: 'Error', text: err.error.msg || 'An error ocurred. Please try again later.', icon: 'error', confirmButtonColor: '#ffbb20' })
-      }).add(() => {
+          .then(function () {
+            window.location.href = '/menu';
+          });
       })
   }
 
@@ -58,6 +59,9 @@ export class MenuDetailsComponent implements OnInit {
       this.menuService.postFood(this.menuForm.value)
         .subscribe(resp => {
           Swal.fire({ title: 'Added', text: 'Food added successfully.', icon: 'success', confirmButtonColor: '#ffbb20' })
+            .then(function () {
+              window.location.href = '/menu';
+            });
         }, (err) => {
           Swal.fire({ title: 'Error', text: 'Error adding food.', icon: 'error', confirmButtonColor: '#ffbb20' })
         }).add(() => {
