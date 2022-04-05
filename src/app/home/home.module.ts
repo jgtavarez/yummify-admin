@@ -18,6 +18,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { MenuDetailsComponent } from './pages/menu-details/menu-details.component';
 import { AdministratorsComponent } from './pages/administrators/administrators.component';
 import { AdministratorsDetailsComponent } from './pages/administrators-details/administrators-details.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdministratorsDetailsComponent } from './pages/administrators-details/a
     MenuComponent,
     MenuDetailsComponent,
     AdministratorsComponent,
-    AdministratorsDetailsComponent
+    AdministratorsDetailsComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,

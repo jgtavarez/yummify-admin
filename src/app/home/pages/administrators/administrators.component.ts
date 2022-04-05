@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as home from '../../store/home.actions';
 import { AppStateWithHomeReducer } from '../../store/home.reducers';
 import { Subscription } from 'rxjs';
-import { AdministratorResp, Pagination } from '../../interfaces/index';
+import { Admin, AdministratorResp, Pagination } from '../../interfaces/index';
 import { AdministratorsService } from '../../services/administrators.service';
 import Swal from 'sweetalert2';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -63,6 +63,93 @@ export class AdministratorsComponent implements OnInit {
     }
 
     this.ngOnInit()
+  }
+
+  activateAdmin(admin: Admin) {
+    if (admin.status) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to deactivate this admin?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ffbb20',
+        cancelButtonColor: '#ef2626',
+        confirmButtonText: 'Accept',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const formData = {
+            status: false,
+          };
+
+          this.administratorsService.activateAdmin(formData, admin.id)
+            .subscribe(resp => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Admin deactivated successfully',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }, (err) => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error deactivating admin',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }).add(() => {
+              this.ngOnInit();
+            });
+        } else {
+          this.ngOnInit();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to activate this admin?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ffbb20',
+        cancelButtonColor: '#ef2626',
+        confirmButtonText: 'Accept',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const formData = {
+            status: true,
+          };
+
+          this.administratorsService.activateAdmin(formData, admin.id)
+            .subscribe(resp => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Admin activated successfully',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }, (err) => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error activating admin',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            })
+            .add(() => {
+              this.ngOnInit();
+            });
+        } else {
+          this.ngOnInit();
+        }
+      });
+    }
   }
 
   deleteAdmin(id: number) {

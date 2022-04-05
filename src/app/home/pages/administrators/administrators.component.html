@@ -45,19 +45,20 @@
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
                         {{item.role | titlecase}}</td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
-                        {{item.status}}</td>
+                        <app-checkbox [estado]="item.status" (click)="activateAdmin(item)">
+                        </app-checkbox>
+                    </td>
                     <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
                         <fa-icon class="mr-4 cursor-pointer" [icon]="faPen" [routerLink]="'./'+item.id"></fa-icon>
                         <fa-icon class="cursor-pointer" [icon]="faTrash" (click)="deleteAdmin(item.id)"></fa-icon>
                     </td>
                 </tr>
-                <tr class="border-b border-line-gray" *ngIf="loading">
-                    <td class="whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis">
-                        Cargando datos...
-                    </td>
-                </tr>
             </tbody>
         </table>
+        <div class="border-b border-line-gray whitespace-nowrap font-normal text-xl px-6 py-3 overflow-x-hidden overflow-ellipsis"
+            *ngIf="loading">
+            Cargando datos...
+        </div>
         <div class="p-6 border-b flex justify-between items-center">
             <div>
             </div>

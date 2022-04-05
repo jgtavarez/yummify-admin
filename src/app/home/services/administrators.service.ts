@@ -38,6 +38,14 @@ export class AdministratorsService {
     return this.http.post<any>(`${environment.API_BASE}/api/admin`, formData, { headers });
   }
 
+  activateAdmin(formData: any, id: number) {
+    const headers = new HttpHeaders({
+      Authorization: this.token
+    });
+
+    return this.http.patch<any>(`${environment.API_BASE}/api/admin/${id}`, formData, { headers });
+  }
+
   deleteAdmin(id: number) {
     const headers = new HttpHeaders({
       Authorization: this.token
