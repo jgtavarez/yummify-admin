@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MenuService } from '../../services/menu.service';
@@ -20,9 +21,10 @@ export class MenuDetailsComponent implements OnInit {
     price: ['', [Validators.required]],
     calories: ['', Validators.required],
     type: ['', Validators.required],
+    image: ['', Validators.required]
   });
 
-  constructor(private router: Router, private fb: FormBuilder, private activatedRoute: ActivatedRoute, private menuService: MenuService) { }
+  constructor(private router: Router, private fb: FormBuilder, private activatedRoute: ActivatedRoute, private menuService: MenuService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -38,8 +40,9 @@ export class MenuDetailsComponent implements OnInit {
           description: resp.description,
           price: resp.price,
           calories: resp.calories,
-          type: resp.type,
+          type: resp.type
         });
+        this.img = resp.image
       }, (err) => {
         Swal.fire({ title: 'Error', text: err.error.msg || 'An error ocurred. Please try again later.', icon: 'error', confirmButtonColor: '#ffbb20' })
           .then(function () {
@@ -47,6 +50,25 @@ export class MenuDetailsComponent implements OnInit {
           });
       })
   }
+
+  img = 'https://res.cloudinary.com/drftnvehe/image/upload/v1650351211/image-preview_uv0kos.png'
+
+  change(e: any) {
+    const image = e.target.files[0]
+    this.toBase64(image).then((image: any) => {
+      this.menuForm.patchValue({
+        image
+      });
+      this.img = image
+    })
+  }
+
+  toBase64 = (file: any) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 
   submit() {
     this.formSubmitted = true;
@@ -123,6 +145,15 @@ export class MenuDetailsComponent implements OnInit {
 
   get typeErrorMsg(): string {
     const errors = this.menuForm.get('type')?.errors;
+    if (errors?.required) {
+      return 'Required'
+    }
+
+    return ''
+  }
+
+  get imageErrorMsg(): string {
+    const errors = this.menuForm.get('image')?.errors;
     if (errors?.required) {
       return 'Required'
     }
